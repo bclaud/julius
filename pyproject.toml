@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "julius"
+version = "0.1.0"
+description = "Get all 100% offers on the internet"
+authors = ["Bruno Claudino <bruarrais@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "julius"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.95.0"}
+yt-dlp = "^2023.3.4"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+julius = "julius.main:main"
