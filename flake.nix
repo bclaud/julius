@@ -32,7 +32,7 @@
             scripts = poetry.mkPoetryScriptsPackage { projectDir = ./.; python = python311; };
             dependencyEnv = default.dependencyEnv;
           };
-          devShell = mkShell { name = "development-shell"; buildInputs = [ format start python311 pkgs.poetry python311Packages.poetry-core python311Packages.black python311Packages.pytest]; };
+          devShell = mkShell { name = "development-shell"; buildInputs = [ format start python311 pkgs.poetry python311Packages.poetry-core python311Packages.black python311Packages.pytest ffmpeg ]; };
         }
     );
 }

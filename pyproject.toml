@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "julius"
 version = "0.1.0"
-description = "Get all 100% offers on the internet"
+description = "Description"
 authors = ["Bruno Claudino <bruarrais@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -11,6 +11,7 @@ packages = [{include = "julius"}]
 python = "^3.11"
 fastapi = {extras = ["all"], version = "^0.95.0"}
 yt-dlp = "^2023.3.4"
+python-telegram-bot = "^20.2"
 
 
 [tool.poetry.group.dev.dependencies]
