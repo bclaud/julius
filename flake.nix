@@ -21,18 +21,22 @@
           inherit system;
         };
 
-        start = pkgs.writeScriptBin "start" "poetry run uvicorn main:app --reload";
+        start = pkgs.writeScriptBin "start" "uvicorn julius.main:app --reload";
         format = pkgs.writeScriptBin "format" "black .";
       in
-        with pkgs; {
+        with pkgs; rec {
           #packages = { default = callPackage ./default.nix {python = pkgs.python3; poetry2nix = inputs.poetry2nix; }; };
           packages = rec {
             default = poetry.mkPoetryApplication { projectDir = ./.; python = python311; };
-            devEnv = poetry.mkPoetryEnv { projectDir = ./.;  };
+            devEnv = poetry.mkPoetryEnv { projectDir = ./.; python=python311; };
             scripts = poetry.mkPoetryScriptsPackage { projectDir = ./.; python = python311; };
             dependencyEnv = default.dependencyEnv;
           };
-          devShell = mkShell { name = "development-shell"; buildInputs = [ format start python311 pkgs.poetry python311Packages.poetry-core python311Packages.black python311Packages.pytest ffmpeg ]; };
+          # devShell = mkShell { name = "development-shell"; buildInputs = [ format start python311 pkgs.poetry python311Packages.poetry-core python311Packages.black python311Packages.pytest ffmpeg ]; };
+          devShell = mkShell {
+              name = "dev-shell";
+              buildInputs = [ packages.devEnv start ];
+          };
         }
     );
 }
